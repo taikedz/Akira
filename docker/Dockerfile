@@ -23,6 +23,8 @@ RUN apt-get update && apt-get install -y \
     io.elementary.vala-lint \
     valac
 
+RUN apt-get install -y libgranite-dev libgtksourceview-3.0-dev goocanvas-2.0-dev gtk+-3.0-dev
+
 ADD build-akira-docker.sh /build.sh
 RUN chmod 755 /build.sh
 

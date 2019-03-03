@@ -2,7 +2,7 @@
 
 ## Launch the build from the host environment
 external_build_akira() {
-    cd "$(dirname "$0")"
+    cd "$(dirname "$0")/.."
     (set -x
     docker run --rm -v "$(dirname "$PWD"):/var/akira-source" -it akira/builder
     )
@@ -30,8 +30,20 @@ fi
 
 cd /var/akira-source
 
+if [[ -d build ]]; then
+    read -p "Remove exiting build directory? y/n> "
+    if [[ "$REPLY" = y ]]; then
+        rm -r build
+    else
+        exit 1
+    fi
+fi
+
 echo "Building akira..."
 meson build --prefix=/usr || exit
+
+cd build
+ninja || exit
 
 echo
 echo "--- Done."
