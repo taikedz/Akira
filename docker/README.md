@@ -6,7 +6,7 @@ In the host environment, run
 
     ./build-akira-docker.sh --build-docker
 
-to build the container image, then start a build.
+to build the container image, then start a build -- this takes a while, >5min.
 
 If you've already built the docker image before, simply run
 
